@@ -1,2 +1,4 @@
-user_name: sandeep
-user_pass: sandeep
+users:
+      - padma
+      - padmavathi
+      - ubuntu
