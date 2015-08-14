@@ -1,0 +1,29 @@
+
+- name: create user
+  user: name={{user_name}} passwd={{user_pass}} shell=/bin/bash groups=sudo append=yes generate_ssh_keys=yes ssh_key_bits=2048 1state=present
+
+- name: Change SSH port
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^Port"
+    line: "Port 30000"
+    state: present
+  #notify: restart ssh
+
+- name: Remove root SSH access
+  lineinfile:
+    dest: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+    state: present
+
+- name: Remove password SSH access
+  lneinfile:
+    dest: /etc/ssh/sshd_config
+    regexp:"^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+    state: present
+
+  handlers:
+  - name: restart ssh
+      service: name=ssh state=restarted

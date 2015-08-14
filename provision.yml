@@ -1,0 +1,6 @@
+---
+  - hosts: all
+    sudo: yes
+    roles:
+    - install_tree
+    - createuser_and_change_password

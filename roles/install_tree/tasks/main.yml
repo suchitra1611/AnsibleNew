@@ -1,0 +1,3 @@
+---
+- name: install tree
+  apt: name=tree state=installed
